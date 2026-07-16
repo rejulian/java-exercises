@@ -18,11 +18,13 @@ public class ClassCastProblem {
 
         // TODO: 1 - Create a raw (non-generic) ArrayList without any type parameter.
         //  Hint: List list = new ArrayList();
+        List list = new ArrayList();
 
 
         // TODO: 2 - Add a String "Hello" and an Integer 42 to the raw list.
         //  This compiles fine because raw lists accept any Object.
-
+        list.add("Hello");
+        list.add(42);
 
         // TODO: 3 - Iterate through the list and try to cast every element to String.
         //  Use a for loop: for (int i = 0; i < list.size(); i++)
@@ -35,11 +37,20 @@ public class ClassCastProblem {
         //  that catches ClassCastException. Print the exception message
         //  so you can see what went wrong.
 
+        for (int i = 0; i < list.size(); i++){
+            try {
+                System.out.println((String) list.get(i));
+            } catch (ClassCastException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         // TODO: 5 - Add a comment below explaining:
         //  (a) Why did the ClassCastException occur?
         //  (b) How do generics (e.g., List<String>) prevent this problem?
         //  (c) At what stage (compile-time or runtime) do generics catch type errors?
-
+        // a - The classCastException occur because when it reached the integer element of the list it could't cast it to a String.
+        // b - Generics prevent this problem because it adds a compile verification and it won't allow us to add an integer to a String list.
+        // c - compile-time.
     }
 }
