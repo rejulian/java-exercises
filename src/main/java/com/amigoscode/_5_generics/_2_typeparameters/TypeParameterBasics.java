@@ -26,6 +26,28 @@ public class TypeParameterBasics {
     // TODO: 4 - Add a toString() method to Container that returns
     //  "Container{value=" + value + "}".
 
+    static class Container<T> {
+        private T value;
+
+        public Container(T value) {
+            this.value = value;
+        }
+
+        public T getValue() {
+            return value;
+        }
+
+        public void setValue(T value) {
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return "Container{" +
+                    "value=" + value +
+                    '}';
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -34,11 +56,20 @@ public class TypeParameterBasics {
         //  (b) Container<Integer> holding the value 2024
         //  Print both containers using toString().
 
+        Container<String> stringContainer = new Container<>("Java Generics");
+        Container<Integer> integerContainer = new Container<>(2024);
+
+        System.out.println(stringContainer);
+        System.out.println(integerContainer);
+
 
         // TODO: 6 - Demonstrate type safety: try to call setValue(123) on the
         //  Container<String> instance. Comment it out and explain why the
         //  compiler rejects it. Then call setValue with a valid String and
         //  print the updated container.
-
+        // stringContainer.setValue(123);
+        // It rejects it because we declare a String as the Generic for this one.
+        stringContainer.setValue("Hello World");
+        System.out.println(stringContainer);
     }
 }
