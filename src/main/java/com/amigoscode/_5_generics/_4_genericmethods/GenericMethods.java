@@ -18,35 +18,80 @@ public class GenericMethods {
     // TODO: 1 - Create a static generic method: <T> void printArray(T[] array)
     //  It should print each element of the array on the same line separated
     //  by spaces, then print a newline at the end.
+    public static <T> void printArray(T[] array) {
+        for(T element: array){
+            System.out.print(element + " ");
+        }
+        System.out.println();
+    }
 
 
     // TODO: 2 - Create a static generic method: <T> T getFirst(List<T> list)
     //  It should return the first element of the list.
     //  If the list is empty, return null.
-
+    public static <T> T getFirst(List<T> list){
+        if(list.isEmpty()) {
+            return null;
+        }
+        return list.getFirst();
+    }
 
     // TODO: 3 - Create a static generic method: <T> T getLast(List<T> list)
     //  It should return the last element of the list.
     //  If the list is empty, return null.
-
+    public static <T> T getLast(List<T> list){
+        if(list.isEmpty()) {
+            return null;
+        }
+        return list.getLast();
+    }
 
     // TODO: 4 - Create a static generic method: <T> List<T> filterNulls(List<T> list)
     //  It should return a new list containing only the non-null elements
     //  from the original list. Do not modify the original list.
+    public static <T> List<T> filterNulls(List<T> list){
+        List<T> newList = new ArrayList<>();
 
+        for(T element: list){
+            if(element != null){
+                newList.add(element);
+            }
+        }
+
+        return newList;
+    }
 
     // TODO: 5 - Create a static generic method: <T> boolean contains(T[] array, T target)
     //  It should return true if the target is found in the array.
     //  Use the equals() method for comparison (handle null target).
+    public static <T> boolean contains(T[] array, T target){
 
+        for(T element : array) {
+            if(element.equals(target)){
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public static void main(String[] args) {
+
+        String[] strings = { "hello", "world", "amigoscode" };
+        List<String> namesWithNulls = Arrays.asList("Julian", null, "Ian", null, "Nelson");
+        Integer[] integers = {1, 2, 3};
 
         // TODO: 6 - Call all five methods above:
         //  (a) printArray with a String[] and an Integer[]
         //  (b) getFirst and getLast with a List<String> of names
         //  (c) filterNulls with a list that contains some null values
         //  (d) contains to search for an element in an array
+        printArray(strings);
+        printArray(integers);
+        System.out.println(getFirst(namesWithNulls));
+        System.out.println(getLast(namesWithNulls));
+        System.out.println(filterNulls(namesWithNulls));
+        System.out.println(contains(integers, 2));
 
 
         // TODO: 7 - Demonstrate type inference: call printArray and contains
@@ -54,5 +99,6 @@ public class GenericMethods {
         //  printArray(myArray) instead of GenericMethods.<String>printArray(myArray)).
         //  Add a comment explaining that the compiler infers T from the arguments.
 
+        // The compiler infers T from the arguments passed to the generic methods.
     }
 }
